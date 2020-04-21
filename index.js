@@ -12,3 +12,23 @@ I need this code, but don't know where, perhaps should make some middleware, don
 
 Go code!
 */
+const express = require("express");
+const server = express();
+const PORT = 7000;
+server.use(express.json());
+
+// Importing Sub-Route
+const projectsRoutes = require("./routes/projectsRoutes");
+
+// Root
+server.use("/", (req, res) => {
+    res.status(200).send("Root of API is running...")
+});
+
+// Using Sub-Route
+server.use("/projects", projectsRoutes);
+
+
+server.listen(PORT, () => {
+    console.log(`API i srunning on port ${PORT}`)
+});
