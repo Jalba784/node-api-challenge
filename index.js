@@ -17,18 +17,25 @@ const server = express();
 const PORT = 7000;
 server.use(express.json());
 
-// Importing Sub-Route
+// Importing Sub-Routes
 const projectsRoutes = require("./routes/projectsRoutes");
+const actionsRoutes = require("./routes/actionsRoutes");
 
 // Root
 server.use("/", (req, res) => {
     res.status(200).send("Root of API is running...")
 });
 
-// Using Sub-Route
+// Using Sub-Routes
 server.use("/projects", projectsRoutes);
+server.use("/actions", actionsRoutes);
+
+// Global Not Found
+server.use((req, res) => {
+   res.status(404).send("Sorry...Data not found!")
+});
 
 
 server.listen(PORT, () => {
-    console.log(`API i srunning on port ${PORT}`)
+    console.log(`API is running on port ${PORT}`)
 });
