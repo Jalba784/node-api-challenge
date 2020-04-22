@@ -37,7 +37,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// GET -> Returns specific post
+// GET
 router.get("/:id", async (req, res) => {
   const specId = await db.get(req.params.id);
   try {
@@ -55,7 +55,7 @@ router.get("/:id", async (req, res) => {
     });
   }
 });
-// DELETE -> Deletes post
+// DELETE
 router.delete("/:id", async (req, res) => {
   const deleteId = await db.get(req.params.id);
   try {
@@ -73,7 +73,7 @@ router.delete("/:id", async (req, res) => {
     });
   }
 });
-// PUT -> Updates post
+// PUT
 router.put("/:id", async (req, res) => {
   const proId = await db.get(req.params.id);
   if (!req.body.name || !req.body.description) {
@@ -88,8 +88,8 @@ router.put("/:id", async (req, res) => {
       });
     } else {
       const updatedPro = await db.update(req.params.id, {
-          name: req.body.name,
-          description: req.body.description
+        name: req.body.name,
+        description: req.body.description
       });
       res.status(200).json(proId);
     }

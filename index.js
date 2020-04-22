@@ -14,7 +14,7 @@ Go code!
 */
 const express = require("express");
 const server = express();
-const PORT = 7000;
+const PORT = process.env.PORT || 3000;
 server.use(express.json());
 
 // Importing Sub-Routes
@@ -23,7 +23,7 @@ const actionsRoutes = require("./routes/actionsRoutes");
 
 // Root
 server.use("/", (req, res) => {
-    res.status(200).send("Root of API is running...")
+  res.status(200).send("Root of API is running...");
 });
 
 // Using Sub-Routes
@@ -32,10 +32,9 @@ server.use("/actions", actionsRoutes);
 
 // Global Not Found
 server.use((req, res) => {
-   res.status(404).send("Sorry...Data not found!")
+  res.status(404).send("Sorry...Data not found!");
 });
 
-
 server.listen(PORT, () => {
-    console.log(`API is running on port ${PORT}`)
+  console.log(`API is running on port ${PORT}`);
 });

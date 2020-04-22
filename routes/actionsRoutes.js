@@ -62,7 +62,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-// PUT -> Updates post
+// PUT
 router.put("/:id", async (req, res) => {
   const actId = await db.get(req.params.id);
   if (!req.body.project_id || !req.body.description || !req.body.notes) {
