@@ -13,9 +13,11 @@ I need this code, but don't know where, perhaps should make some middleware, don
 Go code!
 */
 const express = require("express");
+const cors = require("cors");
 const server = express();
 const PORT = process.env.PORT || 3000;
 server.use(express.json());
+server.use(cors());
 
 // Importing Sub-Routes
 const projectsRoutes = require("./routes/projectsRoutes");
@@ -24,6 +26,13 @@ const actionsRoutes = require("./routes/actionsRoutes");
 // Root
 server.use("/", (req, res) => {
   res.status(200).send("Root of API is running...");
+});
+
+// Cors enabled
+server.get("/", (req, res, next) => {
+  res.json({
+    msg: "This is CORS-enabled for all origins!"
+  })
 });
 
 // Using Sub-Routes
